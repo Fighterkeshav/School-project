@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Datasets</h1>
+        <form method="get" action="{{ url_for('datasets_page') }}">
+                <input type="text" name="search" placeholder="Search datasets..." value="{{ search_query }}">
+                        <button type="submit">Search</button>
+                            </form>
+                                
+                                    <div class="dataset-grid">
+                                            {% for dataset in datasets %}
+                                                    <div class="dataset-card">
+                                                                <h2>{{ dataset.title }}</h2>
+                                                                            <p>{{ dataset.description }}</p>
+                                                                                        <p><small>Author: {{ dataset.author }}</small></p>
+                                                                                                    <p><small>Date: {{ dataset.date }}</small></p>
+                                                                                                            </div>
+                                                                                                                    {% endfor %}
+                                                                                                                        </div>
+
+                                                                                                                            <table>
+                                                                                                                                    <thead>
+                                                                                                                                                <tr><th>Title</th><th>Author</th><th>Date</th><th>Actions</th></tr>
+                                                                                                                                                        </thead>
+                                                                                                                                                                <tbody>
+                                                                                                                                                                            {% for dataset in datasets %}
+                                                                                                                                                                                        <tr>
+                                                                                                                                                                                                        <td>{{ dataset.title }}</td>
+                                                                                                                                                                                                                        <td>{{ dataset.author }}</td>
+                                                                                                                                                                                                                                        <td>{{ dataset.date }}</td>
+                                                                                                                                                                                                                                                        <td><button>View</button></td>
+                                                                                                                                                                                                                                                                    </tr>
+                                                                                                                                                                                                                                                                                {% endfor %}
+                                                                                                                                                                                                                                                                                        </tbody>
+                                                                                                                                                                                                                                                                                            </table>
+                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                            {% endblock %}
